@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct NextButton: View {
     @State var iconState = 0
     @State private var timer: Timer?
     
     var body: some View {
         HStack {
             Button(action: {
-                withAnimation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0)) {
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.5, blendDuration: 0)) {
                     if iconState < 3 {
                         iconState = iconState + 1
                     } else {
@@ -79,5 +79,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    NextButton()
 }

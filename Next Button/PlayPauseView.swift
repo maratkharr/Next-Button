@@ -9,11 +9,17 @@ import SwiftUI
 
 struct PlayPauseView: View {
     @State private var animate = false
+    @State private var rotation = 90
+    @State private var flip = true
     
     var body: some View {
         Button(action: {
-            withAnimation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0)) {
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.67, blendDuration: 0)) {
                 animate.toggle()
+                rotation = rotation + 90
+            }
+            if rotation % 180 == 0 {
+                flip.toggle()
             }
         }, label: {
             ZStack {
@@ -31,8 +37,9 @@ struct PlayPauseView: View {
             .mask {
                 Image(systemName: "play.fill")
                     .scaleEffect(animate ? 2.25 : 6)
-            }.rotationEffect(animate ? Angle(degrees: 0) : Angle(degrees: 90))
+            }.rotationEffect(Angle(degrees: Double(rotation)))
         })
+        .rotationEffect(flip ? Angle(degrees: 0) : Angle(degrees: 180))
         .buttonStyle(NoHighlightButtonStyle())
     }
 }
@@ -42,7 +49,7 @@ struct NoHighlightButtonStyle: ButtonStyle {
             configuration.label
                 .frame(width: 84, height: 84)
                 .foregroundColor(.blue)
-                .background(configuration.isPressed ? Color.blue.opacity(0.1) : Color.clear)
+                .background(configuration.isPressed ? Color.blue.opacity(0.2) : Color.clear)
                 .clipShape(Circle())
                 .scaleEffect(configuration.isPressed ? 0.8 : 1)
                 .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 0), value: configuration.isPressed)

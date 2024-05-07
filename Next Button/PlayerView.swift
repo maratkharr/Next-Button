@@ -11,14 +11,17 @@ struct PlayerView: View {
     var body: some View {
         HStack {
             Spacer()
+            Spacer()
             ContentView()
                 .frame(width: 100, height: 100)
                 .scaleEffect(CGSize(width: -1.0, height: 1.0))
-            Spacer()
+
             PlayPauseView()
-            Spacer()
+                .frame(width: 100, height: 100)
+
             ContentView()
                 .frame(width: 100, height: 100)
+            Spacer()
             Spacer()
         }
     }
