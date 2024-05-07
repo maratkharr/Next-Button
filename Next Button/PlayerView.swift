@@ -12,14 +12,14 @@ struct PlayerView: View {
         HStack {
             Spacer()
             Spacer()
-            ContentView()
+            NextButton()
                 .frame(width: 100, height: 100)
                 .scaleEffect(CGSize(width: -1.0, height: 1.0))
 
             PlayPauseView()
                 .frame(width: 100, height: 100)
 
-            ContentView()
+            NextButton()
                 .frame(width: 100, height: 100)
             Spacer()
             Spacer()
